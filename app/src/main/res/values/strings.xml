@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">St_Louis</string>
+    <string name="motto">Aspire to Excel</string>
+    <string name="logo_desc">School Logo</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="enter_results">Enter Results</string>
+    <string name="mark_attendance">Mark Attendance</string>
+    <string name="set_assignments">Set Assignments</string>
+    <string name="teacher_dashboard">Teacher Dashboard</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="student_dashboard">Student Dashboard</string>
+    <string name="parent_dashboard">Parent Dashboard</string>
+    <string name="bursar_dashboard">Bursar Dashboard</string>
+    <string name="menu" />
+</resources>

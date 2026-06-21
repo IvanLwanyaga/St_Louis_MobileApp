@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "670036207314",
+    "project_id": "schoolmobileapp-fa78f",
+    "storage_bucket": "schoolmobileapp-fa78f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670036207314:android:80c8532be99d7813b96f0b",
+        "android_client_info": {
+          "package_name": "com.st_louis"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN2XuwW2RuvJq4HKKP2xol9j99xHsBnxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

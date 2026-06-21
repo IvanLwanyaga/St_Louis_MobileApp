@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <!-- Start destination will be handled dynamically in Activity based on role -->
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.st_louis.ui.admin.AdminDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_admin_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_teacher_home"
+        android:name="com.st_louis.ui.teacher.TeacherDashboardFragment"
+        android:label="Teacher Dashboard"
+        tools:layout="@layout/fragment_teacher_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_student_home"
+        android:name="com.st_louis.ui.student.StudentDashboardFragment"
+        android:label="Student Dashboard"
+        tools:layout="@layout/fragment_student_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_bursar_home"
+        android:name="com.st_louis.ui.bursar.BursarDashboardFragment"
+        android:label="Bursar Dashboard"
+        tools:layout="@layout/fragment_bursar_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_parent_home"
+        android:name="com.st_louis.ui.parent.ParentDashboardFragment"
+        android:label="Parent Dashboard"
+        tools:layout="@layout/fragment_parent_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_stats"
+        android:name="com.st_louis.ui.stats.StatsFragment"
+        android:label="Statistics" />
+
+    <fragment
+        android:id="@+id/nav_notifications"
+        android:name="com.st_louis.ui.notifications.NotificationsFragment"
+        android:label="Notifications" />
+
+</navigation>

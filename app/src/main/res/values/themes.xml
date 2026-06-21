@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Theme with St. Louis Colors -->
+    <style name="Theme.StLouisSchool" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary Brand Colors -->
+        <item name="colorPrimary">@color/sl_primary</item>
+        <item name="colorPrimaryContainer">@color/sl_primary</item>
+        <item name="colorOnPrimary">@color/sl_text_white</item>
+
+        <!-- Secondary Brand Colors (Gold) -->
+        <item name="colorSecondary">@color/sl_secondary</item>
+        <item name="colorOnSecondary">@color/sl_text_primary</item>
+
+        <!-- Surface Colors -->
+        <item name="colorSurface">@color/sl_surface</item>
+        <item name="colorOnSurface">@color/sl_text_primary</item>
+
+        <!-- Background Colors -->
+        <!--        <item name="colorBackground">@color/sl_background</item>-->
+        <item name="colorOnBackground">@color/sl_text_primary</item>
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/sl_primary_dark</item>
+    </style>
+
+    <style name="Theme.SchoolManagement" parent="Theme.StLouisSchool" />
+</resources>
