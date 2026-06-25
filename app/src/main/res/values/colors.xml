@@ -13,6 +13,11 @@
     <color name="bursar_primary">#E64A19</color>
     <color name="parent_primary">#AD1457</color>
 
+    <color name="status_success">#4CAF50</color>
+    <color name="status_error">#F44336</color>
+    <color name="status_warning">#FF9800</color>
+    <color name="status_info">#2196F3</color>
+
     <color name="gray_light">#F5F5F5</color>
     <color name="gray_medium">#E0E0E0</color>
     <color name="gray_dark">#757575</color>
@@ -80,4 +85,9 @@
     <!-- For Text on Light Blue -->
     <color name="blue_text">#1565C0</color>
     <color name="blue_text_light">#42A5F5</color>
+
+    <!-- Missing Colors -->
+    <color name="primary_color">#0020C2</color>
+    <color name="primary_blue_light">#E3F2FD</color>
+    <color name="hint_gray">#9E9E9E</color>
 </resources>

@@ -21,27 +21,100 @@
         </activity>
 
         <!-- Authentication -->
-        <activity android:name=".LoginActivity" android:exported="false" />
-        <activity android:name=".ForgotPasswordActivity" android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- Admin Management Portals -->
-        <activity android:name=".ui.admin.AdminDashboardActivity" android:exported="false" />
-        <activity android:name=".ui.admin.StudentManagementActivity" android:exported="false" />
-        <activity android:name=".ui.admin.TeacherManagementActivity" android:exported="false" />
-        <activity android:name=".ui.admin.BursarManagementActivity" android:exported="false" />
-        <activity android:name=".ui.admin.ManageUsersActivity" android:exported="false" />
-        <activity android:name=".ui.admin.TimetableManagementActivity" android:exported="false" />
-        <activity android:name=".ui.admin.FinanceManagementActivity" android:exported="false" />
-        <activity android:name=".ui.admin.ReportsActivity" android:exported="false" />
-        <activity android:name=".ui.admin.SettingsActivity" android:exported="false" />
+        <activity
+            android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.StudentManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.TeacherManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.BursarManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.ManageUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.timetable.TimetableManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.FinanceManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.ReportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.SettingsActivity"
+            android:exported="false" />
 
         <!-- User Role Dashboards -->
-        <activity android:name=".ui.teacher.TeacherDashboardActivity" android:exported="false" />
-        <activity android:name=".ui.student.StudentDashboardActivity" android:exported="false" />
-        <activity android:name=".ui.bursar.BursarDashboardActivity" android:exported="false" />
-        <activity android:name=".ui.parent.ParentDashboardActivity" android:exported="false" />
+        <activity
+            android:name=".ui.teacher.TeacherDashboardActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.student.StudentDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bursar.BursarDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.parent.ParentDashboardActivity"
+            android:exported="false" />
 
-        <activity android:name=".MainActivity" android:exported="false" />
+        <!-- ==================== TEACHER ACTIVITIES ==================== -->
+
+        <!-- Teacher: Mark Attendance -->
+        <activity
+            android:name=".MarkAttendanceActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.teacher.TeacherDashboardActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Teacher: Enter Results -->
+        <activity
+            android:name=".ui.teacher.EnterResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.teacher.TeacherDashboardActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Teacher: View Students -->
+        <activity
+            android:name=".StudentListActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.teacher.TeacherDashboardActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Teacher: View Classes -->
+        <activity
+            android:name=".ClassesActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.teacher.TeacherDashboardActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Teacher: Profile -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.teacher.TeacherDashboardActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Main Activity (if needed) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
 
     </application>
 

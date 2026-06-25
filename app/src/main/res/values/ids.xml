@@ -4,4 +4,12 @@
     <item name="nav_header_name" type="id" />
     <item name="nav_header_avatar" type="id" />
     <item name="nav_header_logo" type="id" />
+    <item name="btnSubmitAttendance" type="id" />
+    <item name="tvMarkedCount" type="id" />
+    <item name="tvDate" type="id" />
+    <item name="btnSubmitResults" type="id" />
+    <item name="tvEnteredCount" type="id" />
+    <item name="editTextSubject" type="id" />
+    <item name="spinnerExam" type="id" />
+    <item name="tvExamTitle" type="id" />
 </resources>

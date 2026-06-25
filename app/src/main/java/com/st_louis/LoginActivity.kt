@@ -2,147 +2,107 @@ package com.st_louis
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.st_louis.databinding.ActivityLoginBinding
+import androidx.lifecycle.ViewModelProvider
+import com.st_louis.ViewModels.AuthViewModel
+import com.st_louis.ViewModels.AuthViewModelFactory
+import com.st_louis.data.ApiClient
 import com.st_louis.data.repository.AuthRepository
-import com.st_louis.models.User
+import com.st_louis.models.LoginRequest
 import com.st_louis.ui.admin.AdminDashboardActivity
-import com.st_louis.ui.bursar.BursarDashboardActivity
-import com.st_louis.ui.parent.ParentDashboardActivity
-import com.st_louis.ui.student.StudentDashboardActivity
 import com.st_louis.ui.teacher.TeacherDashboardActivity
-import com.st_louis.utils.Result
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.st_louis.ui.student.StudentDashboardActivity
+import com.st_louis.ui.parent.ParentDashboardActivity
+import com.st_louis.ui.bursar.BursarDashboardActivity
+import com.st_louis.utils.PreferenceManager
 
-@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: AuthViewModel
+    private lateinit var preferenceManager: PreferenceManager
 
-    @Inject
-    lateinit var authRepository: AuthRepository
+    private lateinit var etEmail: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var btnLogin: Button
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_login)
 
-        setupSpinner()
-        setupListeners()
+        preferenceManager = PreferenceManager.getInstance(this)
+        
+        if (preferenceManager.isLoggedIn()) {
+            navigateToDashboard(preferenceManager.getUserRole() ?: "")
+            return
+        }
+
+        initViews()
+        setupViewModel()
+        observeViewModel()
     }
 
-    private fun setupSpinner() {
-        val roles = arrayOf("ADMIN", "TEACHER", "BURSAR", "STUDENT", "PARENT")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, roles)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.roleSpinner.adapter = adapter
-    }
+    private fun initViews() {
+        etEmail = findViewById(R.id.etEmail)
+        etPassword = findViewById(R.id.etPassword)
+        btnLogin = findViewById(R.id.btnLogin)
+        progressBar = findViewById(R.id.progressBar)
 
-    private fun setupListeners() {
-        binding.loginButton.setOnClickListener {
-            performLogin()
-        }
+        btnLogin.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
-        binding.forgotPassword.setOnClickListener {
-            startActivity(Intent(this, ForgotPasswordActivity::class.java))
-        }
-
-        // Optional: Press enter on password field to login
-        binding.passwordEditText.setOnEditorActionListener { _, _, _ ->
-            performLogin()
-            true
-        }
-    }
-
-    private fun performLogin() {
-        val username = binding.usernameEditText.text.toString().trim()
-        val password = binding.passwordEditText.text.toString().trim()
-        val role = binding.roleSpinner.selectedItem.toString()
-
-        // Validate input
-        when {
-            username.isEmpty() -> {
-                binding.usernameEditText.error = "Username is required"
-                binding.usernameEditText.requestFocus()
-                return
-            }
-            password.isEmpty() -> {
-                binding.passwordEditText.error = "Password is required"
-                binding.passwordEditText.requestFocus()
-                return
-            }
-            role.isEmpty() -> {
-                Toast.makeText(this, "Please select a role", Toast.LENGTH_SHORT).show()
-                return
-            }
-        }
-
-        // Show loading state
-        binding.loginButton.isEnabled = false
-        binding.loginButton.text = "Logging in..."
-
-        lifecycleScope.launch {
-            val result = authRepository.login(username, password, role)
-
-            // Reset button state
-            binding.loginButton.isEnabled = true
-            binding.loginButton.text = getString(R.string.login)
-
-            when (result) {
-                is Result.Success -> {
-                    saveUserSession(result.data)
-                    navigateToDashboard(result.data.role)
-                }
-                is Result.Error -> {
-                    showError(result.exception.message ?: "Login failed")
-                }
-                is Result.Loading -> {
-                    // Already showing loading
-                }
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.login(LoginRequest(email, password))
             }
         }
     }
 
-    private fun saveUserSession(user: User) {
-        // Save user data and token to SharedPreferences
-        val sharedPref = getSharedPreferences("app_prefs", MODE_PRIVATE)
-        sharedPref.edit().apply {
-            putString("user_id", user.id)
-            putString("username", user.username)
-            putString("email", user.email)
-            putString("role", user.role)
-            putString("token", user.token)
-            putString("first_name", user.firstName)
-            putString("last_name", user.lastName)
-            putBoolean("is_logged_in", true)
-            apply()
+    private fun setupViewModel() {
+        val repository = AuthRepository(ApiClient.apiService)
+        val factory = AuthViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+    }
+
+    private fun observeViewModel() {
+        viewModel.loginResponse.observe(this) { response ->
+            if (response.isSuccessful && response.body()?.data != null) {
+                val loginData = response.body()!!.data!!
+                preferenceManager.saveUser(loginData.user)
+                preferenceManager.saveToken(loginData.token)
+                navigateToDashboard(loginData.user.role.name.lowercase())
+            } else {
+                Toast.makeText(this, "Login failed: ${response.message()}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.isLoading.observe(this) { isLoading ->
+            progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            btnLogin.isEnabled = !isLoading
+        }
+
+        viewModel.error.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
         }
     }
 
     private fun navigateToDashboard(role: String) {
-        val intent = when (role.uppercase()) {
-            "ADMIN" -> Intent(this, AdminDashboardActivity::class.java)
-            "TEACHER" -> Intent(this, TeacherDashboardActivity::class.java)
-            "BURSAR" -> Intent(this, BursarDashboardActivity::class.java)
-            "STUDENT" -> Intent(this, StudentDashboardActivity::class.java)
-            "PARENT" -> Intent(this, ParentDashboardActivity::class.java)
-            else -> {
-                Toast.makeText(this, "Unknown role: $role", Toast.LENGTH_SHORT).show()
-                Intent(this, AdminDashboardActivity::class.java)
-            }
+        val intent = when (role.lowercase()) {
+            "admin" -> Intent(this, AdminDashboardActivity::class.java)
+            "teacher" -> Intent(this, TeacherDashboardActivity::class.java)
+            "student" -> Intent(this, StudentDashboardActivity::class.java)
+            "parent" -> Intent(this, ParentDashboardActivity::class.java)
+            "bursar" -> Intent(this, BursarDashboardActivity::class.java)
+            else -> Intent(this, LoginActivity::class.java)
         }
-
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
-    }
-
-    private fun showError(message: String) {
-        Toast.makeText(this, "Login failed: $message", Toast.LENGTH_LONG).show()
     }
 }
