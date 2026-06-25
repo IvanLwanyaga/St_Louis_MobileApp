@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvInitials"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circular_bg"
+            android:backgroundTint="@color/primary_blue"
+            android:gravity="center"
+            android:text="AB"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:textStyle="bold"
+                android:textColor="@color/text_title"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvUserSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grade 4 · SL/001"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_edit"
+            app:tint="@color/primary_blue"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

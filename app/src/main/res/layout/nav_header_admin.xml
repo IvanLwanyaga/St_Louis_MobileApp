@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary_blue"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <!-- School Logo -->
+    <ImageView
+        android:id="@+id/nav_header_logo"
+        android:layout_width="375dp"
+        android:layout_height="103dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="St. Louis Logo"
+        android:src="@drawable/st_louis" />
+
+    <!-- School Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="St. Louis Pre &amp; Primary School"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <!-- Tagline / Motto -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:text="Aspire To Excel"
+        android:textColor="#BFDBFE"
+        android:textSize="13sp" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#33FFFFFF" />
+
+    <!-- Admin Info -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/nav_header_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_term_badge"
+            android:backgroundTint="#3B82F6"
+            android:gravity="center"
+            android:text="JM"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nav_header_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dr. James Mutua"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nav_header_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="School Principal"
+                android:textColor="#BFDBFE"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
