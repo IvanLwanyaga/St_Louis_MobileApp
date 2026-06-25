@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/tvDayNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="#212121"
+        android:padding="4dp" />
+
+    <LinearLayout
+        android:id="@+id/llEventIndicators"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="2dp">
+
+        <View
+            android:id="@+id/viewEventIndicator1"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:background="@drawable/circle_indicator" />
+
+        <View
+            android:id="@+id/viewEventIndicator2"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:background="@drawable/circle_indicator" />
+
+        <View
+            android:id="@+id/viewEventIndicator3"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="1dp"
+            android:visibility="gone"
+            android:background="@drawable/circle_indicator" />
+    </LinearLayout>
+
+</LinearLayout>
