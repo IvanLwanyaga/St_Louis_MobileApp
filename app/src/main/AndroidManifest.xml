@@ -59,6 +59,10 @@
             android:name=".ui.admin.SettingsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.attendance.AttendanceActivity"
+            android:exported="false" />
+
         <!-- User Role Dashboards -->
         <activity
             android:name=".ui.teacher.TeacherDashboardActivity"

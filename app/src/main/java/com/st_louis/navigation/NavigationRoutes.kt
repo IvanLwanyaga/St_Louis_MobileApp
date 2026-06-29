@@ -73,6 +73,11 @@ object NavigationRoutes {
         context.startActivity(Intent(context, SettingsActivity::class.java))
     }
 
+    fun navigateToAttendance(context: Context) {
+        val intent = Intent(context, com.st_louis.ui.attendance.AttendanceActivity::class.java)
+        context.startActivity(intent)
+    }
+
     fun navigateToRegistration(context: Context, userType: String) {
         val intent = Intent(context, ManageUsersActivity::class.java)
         intent.putExtra("USER_TYPE", userType)
