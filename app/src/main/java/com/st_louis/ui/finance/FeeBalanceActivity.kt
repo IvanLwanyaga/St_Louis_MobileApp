@@ -31,7 +31,7 @@ class FeeBalanceActivity : AppCompatActivity() {
         setupSwipeRefresh()
 
         // Load data for current student
-        viewModel.loadFeeDetails("S001") // This ID should come from intent or session
+        viewModel.loadFeeDetails("S001")
     }
 
     private fun setupToolbar() {
