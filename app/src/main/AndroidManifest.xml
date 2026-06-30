@@ -47,7 +47,7 @@
             android:name=".ui.admin.ManageUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.admin.timetable.TimetableManagementActivity"
+            android:name=".ui.admin.TimetableManagementActivity"
             android:exported="false" />
         <activity
             android:name=".ui.admin.FinanceManagementActivity"
