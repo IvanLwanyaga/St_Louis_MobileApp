@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Teacher Profile Header -->
+                    <!-- Welcome Header -->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,6 +95,7 @@
                                 android:layout_height="wrap_content"
                                 android:padding="24dp">
 
+                                <!-- Welcome Message -->
                                 <TextView
                                     android:id="@+id/tvGreeting"
                                     android:layout_width="wrap_content"
@@ -109,18 +110,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/tvGreeting"
                                     android:layout_marginTop="4dp"
-                                    android:text="Mr. John Otieno"
+                                    android:text="Tamale Eddy"
                                     android:textColor="@color/white"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/tvSubject"
+                                    android:id="@+id/tvRole"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/tvTeacherName"
                                     android:layout_marginTop="2dp"
-                                    android:text="Mathematics &amp; Physics"
+                                    android:text="Teacher"
                                     android:textColor="#80CBC4"
                                     android:textSize="14sp" />
 
@@ -132,154 +133,418 @@
                                     android:background="@drawable/circular_bg"
                                     android:backgroundTint="#00897B"
                                     android:gravity="center"
-                                    android:text="JO"
+                                    android:text="TE"
                                     android:textColor="@color/white"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/tvSubject"
-                                    android:layout_marginTop="20dp"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:layout_marginEnd="4dp"
-                                        android:background="@drawable/bg_term_badge"
-                                        android:backgroundTint="#00897B"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-                                        <TextView android:text="Classes Today" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#B2DFDB" android:textSize="10sp" />
-                                        <TextView android:id="@+id/tvClassesCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" android:textColor="@color/white" android:textStyle="bold" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:layout_marginHorizontal="4dp"
-                                        android:background="@drawable/bg_term_badge"
-                                        android:backgroundTint="#00897B"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-                                        <TextView android:text="Students" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#B2DFDB" android:textSize="10sp" />
-                                        <TextView android:id="@+id/tvTotalStudents" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="155" android:textColor="@color/white" android:textStyle="bold" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:layout_marginStart="4dp"
-                                        android:background="@drawable/bg_term_badge"
-                                        android:backgroundTint="#00897B"
-                                        android:orientation="vertical"
-                                        android:padding="12dp">
-                                        <TextView android:text="Avg Score" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#B2DFDB" android:textSize="10sp" />
-                                        <TextView android:id="@+id/tvAvgScore" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="71%" android:textColor="@color/white" android:textStyle="bold" />
-                                    </LinearLayout>
-                                </LinearLayout>
                             </RelativeLayout>
                         </androidx.cardview.widget.CardView>
                     </RelativeLayout>
 
-                    <!-- Main Content -->
+                    <!-- Stats Cards -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Upcoming Classes"
-                            android:textColor="@color/text_title"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
+                        <!-- Card 1: Total Students -->
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            app:cardCornerRadius="16dp">
+                            android:layout_marginBottom="12dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
                                 android:padding="16dp">
-                                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                                    <TextView android:text="Grade 4A — Mathematics" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                                    <TextView android:layout_alignParentEnd="true" android:text="08:30 AM" android:textColor="@color/teacher_primary" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                                </RelativeLayout>
-                                <TextView android:layout_marginTop="4dp" android:text="Room 12 · 42 Students" android:textColor="@color/text_secondary" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                                <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/btnTakeAttendance"
-                                    android:layout_width="match_parent"
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/circular_bg"
+                                    android:backgroundTint="#E3F2FD"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_students"
+                                    app:tint="#1976D2" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="12dp"
-                                    android:text="Take Attendance"
-                                    app:backgroundTint="@color/teacher_primary"
-                                    app:cornerRadius="8dp" />
+                                    android:layout_marginStart="16dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:text="Total Students"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="14sp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <TextView
+                                        android:id="@+id/tvTotalStudents"
+                                        android:text="0"
+                                        android:textColor="@color/text_title"
+                                        android:textSize="24sp"
+                                        android:textStyle="bold"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
+                        <!-- Card 2: Today's Attendance -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/circular_bg"
+                                    android:backgroundTint="#FFF3E0"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_attendence"
+                                    app:tint="#E65100" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:text="Today's Attendance"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="14sp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:layout_marginTop="4dp">
+
+                                        <TextView
+                                            android:id="@+id/tvMarked"
+                                            android:text="Marked: 0"
+                                            android:textColor="#4CAF50"
+                                            android:textSize="14sp"
+                                            android:textStyle="bold"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=" | "
+                                            android:textColor="@color/text_secondary" />
+
+                                        <TextView
+                                            android:id="@+id/tvNotMarked"
+                                            android:text="Not Marked: 0"
+                                            android:textColor="#F44336"
+                                            android:textSize="14sp"
+                                            android:textStyle="bold"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Card 3: Pending Tasks -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="16dp">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/circular_bg"
+                                    android:backgroundTint="#FFF8E1"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_assignments"
+                                    app:tint="#F57F17" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:text="Pending Tasks"
+                                        android:textColor="@color/text_secondary"
+                                        android:textSize="14sp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <TextView
+                                        android:id="@+id/tvPendingTasks"
+                                        android:text="No pending tasks"
+                                        android:textColor="@color/text_title"
+                                        android:textSize="14sp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Quick Action Buttons -->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
                             android:text="Quick Actions"
                             android:textColor="@color/text_title"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_marginBottom="12dp" />
 
                         <GridLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:columnCount="3">
+                            android:columnCount="3"
+                            android:rowCount="1">
 
+                            <!-- Mark Attendance -->
                             <LinearLayout
-                                android:id="@+id/btnEnterGrades"
+                                android:id="@+id/btnMarkAttendance"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:padding="12dp">
-                                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/circular_bg" android:backgroundTint="#E0F2F1" android:padding="8dp" android:src="@drawable/ic_exams" app:tint="@color/teacher_primary" />
-                                <TextView android:layout_marginTop="8dp" android:text="Grades" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                                android:padding="12dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/circular_bg"
+                                    android:backgroundTint="#E0F2F1"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_attendence"
+                                    app:tint="@color/teacher_primary" />
+
+                                <TextView
+                                    android:layout_marginTop="8dp"
+                                    android:text="Mark Attendance"
+                                    android:textSize="16sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
                             </LinearLayout>
 
+                            <!-- Enter Results -->
                             <LinearLayout
-                                android:id="@+id/btnAssignments"
+                                android:id="@+id/btnEnterResults"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:padding="12dp">
-                                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/circular_bg" android:backgroundTint="#E0F2F1" android:padding="8dp" android:src="@drawable/ic_assignments" app:tint="@color/teacher_primary" />
-                                <TextView android:layout_marginTop="8dp" android:text="Assignments" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                                android:padding="12dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/circular_bg"
+                                    android:backgroundTint="#E8F5E9"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_results"
+                                    app:tint="#388E3C" />
+
+                                <TextView
+                                    android:layout_marginTop="8dp"
+                                    android:text="Enter Results"
+                                    android:textSize="16sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
                             </LinearLayout>
 
+                            <!-- View Students -->
                             <LinearLayout
-                                android:id="@+id/btnTimetable"
+                                android:id="@+id/btnViewStudents"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_columnWeight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:padding="12dp">
-                                <ImageView android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/circular_bg" android:backgroundTint="#E0F2F1" android:padding="8dp" android:src="@drawable/ic_schedule" app:tint="@color/teacher_primary" />
-                                <TextView android:layout_marginTop="8dp" android:text="Timetable" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                                android:padding="12dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:background="?attr/selectableItemBackground">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:background="@drawable/circular_bg"
+                                    android:backgroundTint="#E3F2FD"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_students"
+                                    app:tint="#1976D2" />
+
+                                <TextView
+                                    android:layout_marginTop="8dp"
+                                    android:text="View Students"
+                                    android:textSize="16sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
                             </LinearLayout>
                         </GridLayout>
 
+                        <!-- Admin Only Actions (Visible only to Admin) -->
+                        <LinearLayout
+                            android:id="@+id/adminActionsContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:layout_marginTop="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Admin Actions"
+                                android:textColor="@color/text_title"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="12dp" />
+
+                            <GridLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:columnCount="3">
+
+                                <!-- Manage Staff -->
+                                <LinearLayout
+                                    android:id="@+id/btnManageStaff"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="12dp"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:background="?attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:layout_width="48dp"
+                                        android:layout_height="48dp"
+                                        android:background="@drawable/circular_bg"
+                                        android:backgroundTint="#F3E5F5"
+                                        android:padding="10dp"
+                                        android:src="@drawable/ic_staff"
+                                        app:tint="#7B1FA2" />
+
+                                    <TextView
+                                        android:layout_marginTop="8dp"
+                                        android:text="Manage Staff"
+                                        android:textSize="12sp"
+                                        android:textAlignment="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+
+                                <!-- Manage Students -->
+                                <LinearLayout
+                                    android:id="@+id/btnManageStudents"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="12dp"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:background="?attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:layout_width="48dp"
+                                        android:layout_height="48dp"
+                                        android:background="@drawable/circular_bg"
+                                        android:backgroundTint="#FFF3E0"
+                                        android:padding="10dp"
+                                        android:src="@drawable/ic_manage_students"
+                                        app:tint="#E65100" />
+
+                                    <TextView
+                                        android:layout_marginTop="8dp"
+                                        android:text="Manage Students"
+                                        android:textSize="12sp"
+                                        android:textAlignment="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+
+                                <!-- Reports -->
+                                <LinearLayout
+                                    android:id="@+id/btnReports"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="12dp"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:background="?attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:layout_width="48dp"
+                                        android:layout_height="48dp"
+                                        android:background="@drawable/circular_bg"
+                                        android:backgroundTint="#E8EAF6"
+                                        android:padding="10dp"
+                                        android:src="@drawable/ic_reports"
+                                        app:tint="#283593" />
+
+                                    <TextView
+                                        android:layout_marginTop="8dp"
+                                        android:text="Reports"
+                                        android:textSize="12sp"
+                                        android:textAlignment="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </GridLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

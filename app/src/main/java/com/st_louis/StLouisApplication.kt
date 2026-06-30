@@ -1,7 +1,11 @@
 package com.st_louis
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.st_louis.data.ApiClient
 
-@HiltAndroidApp
-class StLouisApplication : Application()
+class StLouisApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        ApiClient.init(this)
+    }
+}

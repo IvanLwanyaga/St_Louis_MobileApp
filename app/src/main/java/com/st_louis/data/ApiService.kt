@@ -98,6 +98,11 @@ interface ApiService {
     @GET("stats/parent/{id}")
     suspend fun getParentStats(@Path("id") id: String): Response<ParentStats>
 
+    // ==================== FEE ENDPOINTS ====================
+
+    @GET("student/{studentId}/fees/details")
+    suspend fun getFeeDetails(@Path("studentId") studentId: String): Response<FeeDetailsResponse>
+
     // ==================== SCHEDULE MANAGEMENT ENDPOINTS ====================
 
     @GET("admin/schedule")
@@ -255,48 +260,196 @@ interface ApiService {
 
     @GET("admin/timetable/rooms")
     suspend fun getAllRooms(): Response<List<String>>
+
+    // ==================== TEACHER DASHBOARD & CLASS ENDPOINTS ====================
+
+    // --- Teacher Dashboard ---
+    @GET("teacher/dashboard/{teacherId}")
+    suspend fun getTeacherDashboard(
+        @Path("teacherId") teacherId: String
+    ): Response<TeacherDashboardData>
+
+    // --- Teacher Classes ---
+    @GET("teacher/{teacherId}/classes")
+    suspend fun getTeacherClasses(
+        @Path("teacherId") teacherId: String
+    ): Response<List<TeacherClass>>
+
+    @GET("teacher/{teacherId}/classes/{section}")
+    suspend fun getTeacherClassesBySection(
+        @Path("teacherId") teacherId: String,
+        @Path("section") section: String
+    ): Response<List<TeacherClass>>
+
+    @GET("teacher/class/{classId}")
+    suspend fun getClassDetail(
+        @Path("classId") classId: String
+    ): Response<ClassDetail>
+
+    @GET("teacher/{teacherId}/class/{classId}/students")
+    suspend fun getClassStudents(
+        @Path("teacherId") teacherId: String,
+        @Path("classId") classId: String
+    ): Response<List<Student>>
+
+    @GET("teacher/class/{classId}/schedule")
+    suspend fun getClassSchedule(
+        @Path("classId") classId: String,
+        @Query("day") day: String? = null
+    ): Response<List<ClassSchedule>>
+
+    @GET("teacher/{teacherId}/classes/summary")
+    suspend fun getClassSummary(
+        @Path("teacherId") teacherId: String,
+        @Query("term") term: String? = null,
+        @Query("year") year: String? = null
+    ): Response<ClassSummary>
+
+    // --- Teacher Students ---
+    @GET("teacher/{teacherId}/students")
+    suspend fun getTeacherStudents(
+        @Path("teacherId") teacherId: String
+    ): Response<List<Student>>
+
+    @GET("teacher/{teacherId}/students/{classId}")
+    suspend fun getTeacherStudentsByClass(
+        @Path("teacherId") teacherId: String,
+        @Path("classId") classId: String
+    ): Response<List<Student>>
+
+    // --- Teacher Subjects ---
+    @GET("teacher/{teacherId}/subjects")
+    suspend fun getTeacherSubjects(
+        @Path("teacherId") teacherId: String
+    ): Response<List<Subject>>
+
+    @GET("teacher/class/{classId}/subjects")
+    suspend fun getClassSubjects(
+        @Path("classId") classId: String
+    ): Response<List<Subject>>
+
+    // --- Teacher Profile ---
+    @GET("teacher/{teacherId}/profile")
+    suspend fun getTeacherProfile(
+        @Path("teacherId") teacherId: String
+    ): Response<TeacherProfile>
+
+    @PUT("teacher/{teacherId}/profile")
+    suspend fun updateTeacherProfile(
+        @Path("teacherId") teacherId: String,
+        @Body profile: TeacherProfile
+    ): Response<TeacherProfile>
+
+    // --- Notifications ---
+    @GET("teacher/{teacherId}/notifications")
+    suspend fun getTeacherNotifications(
+        @Path("teacherId") teacherId: String
+    ): Response<List<Notification>>
+
+    @PUT("teacher/notifications/{notificationId}/read")
+    suspend fun markNotificationRead(
+        @Path("notificationId") notificationId: String
+    ): Response<SimpleApiResponse>
+
+    @PUT("teacher/notifications/read-all")
+    suspend fun markAllNotificationsRead(
+        @Body request: MarkAllReadRequest
+    ): Response<SimpleApiResponse>
+
+    // ==================== ATTENDANCE ENDPOINTS ====================
+
+    @GET("teacher/{teacherId}/attendance/today")
+    suspend fun getTodayAttendance(
+        @Path("teacherId") teacherId: String
+    ): Response<AttendanceSummary>
+
+    @GET("teacher/{teacherId}/attendance/{date}")
+    suspend fun getAttendanceByDate(
+        @Path("teacherId") teacherId: String,
+        @Path("date") date: String
+    ): Response<AttendanceSummary>
+
+    @GET("teacher/{teacherId}/attendance/class/{classId}")
+    suspend fun getClassAttendance(
+        @Path("teacherId") teacherId: String,
+        @Path("classId") classId: String,
+        @Query("date") date: String? = null
+    ): Response<AttendanceSummary>
+
+    @GET("teacher/{teacherId}/attendance/student/{studentId}")
+    suspend fun getStudentAttendance(
+        @Path("teacherId") teacherId: String,
+        @Path("studentId") studentId: String,
+        @Query("from") from: String? = null,
+        @Query("to") to: String? = null
+    ): Response<StudentAttendance>
+
+    @GET("teacher/{teacherId}/attendance/stats")
+    suspend fun getAttendanceStats(
+        @Path("teacherId") teacherId: String,
+        @Query("class_id") classId: String? = null,
+        @Query("month") month: Int? = null,
+        @Query("year") year: Int? = null
+    ): Response<AttendanceStats>
+
+    @POST("teacher/attendance/mark")
+    suspend fun markAttendance(
+        @Body attendanceData: AttendanceRequest
+    ): Response<ApiResponse<AttendanceData>>
+
+    @PUT("teacher/attendance/{attendanceId}")
+    suspend fun updateAttendance(
+        @Path("attendanceId") attendanceId: String,
+        @Body attendanceData: AttendanceRequest
+    ): Response<ApiResponse<AttendanceData>>
+
+    @PUT("teacher/attendance/student/{studentId}")
+    suspend fun updateStudentAttendance(
+        @Path("studentId") studentId: String,
+        @Body record: AttendanceRecord
+    ): Response<ApiResponse<AttendanceData>>
+
+    @DELETE("teacher/attendance/{attendanceId}")
+    suspend fun deleteAttendance(
+        @Path("attendanceId") attendanceId: String
+    ): Response<SimpleApiResponse>
+
+    @GET("teacher/{teacherId}/attendance/export")
+    suspend fun exportAttendance(
+        @Path("teacherId") teacherId: String,
+        @Query("class_id") classId: String? = null,
+        @Query("from") from: String? = null,
+        @Query("to") to: String? = null,
+        @Query("format") format: String = "pdf"
+    ): Response<AttendanceExport>
+
+    // ==================== RESULTS ENDPOINTS ====================
+
+    @GET("teacher/{teacherId}/exams")
+    suspend fun getExams(
+        @Path("teacherId") teacherId: String
+    ): Response<List<Exam>>
+
+    @POST("teacher/results")
+    suspend fun submitResults(
+        @Body resultsData: ResultsRequest
+    ): Response<ApiResponse<Any>>
+
+    @GET("teacher/{teacherId}/results/{classId}/{examId}")
+    suspend fun getClassResults(
+        @Path("teacherId") teacherId: String,
+        @Path("classId") classId: String,
+        @Path("examId") examId: String
+    ): Response<List<StudentResult>>
+
+    @PUT("teacher/results/{resultId}")
+    suspend fun updateResult(
+        @Path("resultId") resultId: String,
+        @Body resultData: ResultUpdateRequest
+    ): Response<ApiResponse<Any>>
+
+    @DELETE("teacher/results/{resultId}")
+    suspend fun deleteResult(
+        @Path("resultId") resultId: String
+    ): Response<SimpleApiResponse>
 }
-
-// ==================== RESPONSE MODELS ====================
-
-data class RefreshTokenResponse(
-    val token: String,
-    val message: String
-)
-
-data class AuthResponse(
-    val token: String,
-    val user: UserAccount
-)
-
-data class ParentStats(
-    val childAttendance: String,
-    val feeBalance: String
-)
-
-data class BursarStats(
-    val todayCollection: String,
-    val pendingFees: String
-)
-
-data class TeacherStats(
-    val classesToday: String,
-    val totalStudents: String,
-    val avgScore: String
-)
-
-data class StudentStats(
-    val rank: String,
-    val avgScore: String
-)
-
-data class BooleanResponse(
-    val exists: Boolean
-)
-
-data class AdminStats(
-    val total_students: String,
-    val total_staff: String,
-    val attendance_rate: String,
-    val fees_collected: String
-)

@@ -1,4 +1,4 @@
-package com.st_louis.ui.admin.timetable
+package com.st_louis.ui.admin
 
 import android.os.Bundle
 import android.view.Menu
@@ -14,6 +14,7 @@ import com.st_louis.R
 import com.st_louis.adapters.TimetablePagerAdapter
 import com.st_louis.data.ApiClient
 import com.st_louis.ui.admin.TimetableViewModelFactory
+import com.st_louis.ui.admin.timetable.TimetableViewModel
 
 class TimetableManagementActivity : AppCompatActivity() {
 
