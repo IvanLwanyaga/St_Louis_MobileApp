@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.st_louis.R
 import com.st_louis.models.User
-import com.st_louis.ui.teacher.TeacherDashboardViewModel
 import com.st_louis.utils.PreferenceManager
 import com.st_louis.LoginActivity
 import com.st_louis.ProfileActivity
@@ -20,11 +19,13 @@ import com.st_louis.ClassesActivity
 import com.st_louis.StudentListActivity
 import com.st_louis.MarkAttendanceActivity
 import com.st_louis.EnterResultsActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TeacherDashboardActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var viewModel: TeacherDashboardViewModel
+    private val viewModel: TeacherDashboardViewModel by viewModels()
     private lateinit var preferenceManager: PreferenceManager
     private var currentUser: User? = null
 
@@ -48,7 +49,6 @@ class TeacherDashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_teacher_dashboard)
 
         initializeViews()
-        setupViewModel()
         loadUserData()
         observeViewModel()
         setupClickListeners()
@@ -77,10 +77,6 @@ class TeacherDashboardActivity : AppCompatActivity() {
         btnViewStudents = findViewById(R.id.btnViewStudents)
 
         preferenceManager = PreferenceManager.getInstance(this)
-    }
-
-    private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[TeacherDashboardViewModel::class.java]
     }
 
     private fun loadUserData() {

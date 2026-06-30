@@ -5,21 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.st_louis.R
 import com.st_louis.adapters.StudentAttendanceAdapter
-import com.st_louis.data.models.Student
+import com.st_louis.data.ApiClient
+import com.st_louis.models.Student
 import com.st_louis.utils.PreferenceManager
 import com.st_louis.viewmodels.AttendanceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class MarkAttendanceActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: AttendanceViewModel
+    private val viewModel: AttendanceViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: StudentAttendanceAdapter
     private lateinit var btnSubmitAttendance: Button
@@ -44,10 +47,9 @@ class MarkAttendanceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mark_attendance)
 
-        teacherId = intent.getStringExtra("teacher_id") ?: PreferenceManager.getUserId() ?: ""
+        teacherId = intent.getStringExtra("teacher_id") ?: PreferenceManager.getInstance(this).getCurrentUser()?.id ?: ""
 
         initializeViews()
-        setupViewModel()
         setupRecyclerView()
         setupSpinners()
         setupObservers()
@@ -78,10 +80,6 @@ class MarkAttendanceActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Mark Attendance"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[AttendanceViewModel::class.java]
     }
 
     private fun setupRecyclerView() {

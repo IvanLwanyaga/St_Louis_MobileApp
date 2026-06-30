@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.st_louis.data.ApiService
-import com.st_louis.models.FeeDetailsResponse
 import com.st_louis.models.FeeSummary
 import com.st_louis.models.Payment
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FeeBalanceViewModel(private val apiService: ApiService) : ViewModel() {
+@HiltViewModel
+class FeeBalanceViewModel @Inject constructor(private val apiService: ApiService) : ViewModel() {
 
     private val _feeSummary = MutableLiveData<FeeSummary>()
     val feeSummary: LiveData<FeeSummary> = _feeSummary
@@ -36,10 +38,10 @@ class FeeBalanceViewModel(private val apiService: ApiService) : ViewModel() {
                         _paymentHistory.value = it.history
                     }
                 } else {
-                    _error.value = "Failed to load fee details: ${response.message()}"
+                    _error.value = "Failed to load fee details"
                 }
             } catch (e: Exception) {
-                _error.value = "An error occurred: ${e.message}"
+                _error.value = e.localizedMessage
             } finally {
                 _isLoading.value = false
             }

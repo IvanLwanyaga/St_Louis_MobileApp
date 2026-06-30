@@ -3,17 +3,18 @@ package com.st_louis.ui.attendance
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.st_louis.R
 import com.st_louis.data.ApiClient
 import com.st_louis.databinding.ActivityAttendanceBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AttendanceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAttendanceBinding
-    private lateinit var viewModel: AttendanceViewModel
+    private val viewModel: AttendanceViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,6 @@ class AttendanceActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar()
-        setupViewModel()
         setupObservers()
         setupListeners()
         
@@ -34,17 +34,6 @@ class AttendanceActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { 
             onBackPressedDispatcher.onBackPressed()
         }
-    }
-
-    private fun setupViewModel() {
-        // Manual instantiation since Hilt is not yet configured on this branch
-        val apiService = ApiClient.getApiService()
-        val factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return AttendanceViewModel(apiService) as T
-            }
-        }
-        viewModel = ViewModelProvider(this, factory)[AttendanceViewModel::class.java]
     }
 
     private fun setupObservers() {

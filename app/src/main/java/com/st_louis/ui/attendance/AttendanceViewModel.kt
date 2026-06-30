@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.st_louis.data.ApiService
 import com.st_louis.models.AttendanceRecord
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AttendanceViewModel(private val apiService: ApiService) : ViewModel() {
+@HiltViewModel
+class AttendanceViewModel @Inject constructor(private val apiService: ApiService) : ViewModel() {
 
     private val _attendancePercentage = MutableLiveData<String>().apply { value = "0" }
     val attendancePercentage: LiveData<String> = _attendancePercentage

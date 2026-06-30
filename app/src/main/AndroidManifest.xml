@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".StLouisApp"
         android:allowBackup="true"
         android:icon="@drawable/st_louis"
         android:label="@string/app_name"
@@ -67,6 +68,10 @@
             android:name=".ui.finance.FeeBalanceActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.student.AcademicResultsActivity"
+            android:exported="false" />
 
         <!-- User Role Dashboards -->
         <activity

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9FAFB">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_blue"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/arrow_back"
+            app:navigationIconTint="@color/white">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="St. Louis Pre &amp; Primary"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Academic Results Portal"
+                    android:textColor="#BFDBFE"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Student Profile Header -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E5E7EB">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvStudentInitials"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_circle_blue_light"
+                        android:gravity="center"
+                        android:textColor="@color/primary_blue"
+                        android:textStyle="bold"
+                        tools:text="AM" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+
+                        <TextView
+                            android:id="@+id/tvStudentName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#111827"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            tools:text="Aisha Mugisha" />
+
+                        <TextView
+                            android:id="@+id/tvStudentDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp"
+                            tools:text="Primary 4 · Class 4B · 2025/2026" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="#D1D5DB" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tabs -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                app:tabIndicatorColor="@color/primary_blue"
+                app:tabSelectedTextColor="@color/primary_blue"
+                app:tabTextColor="#6B7280">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Results" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Report Card" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Progress" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SELECT EXAM PERIOD"
+                android:textColor="#6B7280"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:letterSpacing="0.05" />
+
+            <!-- Exam Period Selector -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:padding="2dp">
+
+                <Spinner
+                    android:id="@+id/spinnerExamPeriod"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent" />
+            </RelativeLayout>
+
+            <!-- Results Summary Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvResultsSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#1E3A8A">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Overall average"
+                            android:textColor="@color/background_blue"
+                            android:backgroundTint="@color/primary_blue"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvOverallAverage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            tools:text="76%" />
+
+                        <TextView
+                            android:id="@+id/tvOverallGrade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/background_blue"
+                            android:textSize="14sp"
+                            tools:text="Grade B · Good performance" />
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentEnd="true"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#3B82F6">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Position"
+                                android:textColor="@color/background_blue"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvClassPosition"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/primary_blue"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                tools:text="4th" />
+
+                            <TextView
+                                android:id="@+id/tvTotalInClass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/background_blue"
+                                android:textSize="11sp"
+                                tools:text="out of 38 students" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Legend -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/circle_indicator" android:backgroundTint="#059669" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" A (80–100%)" android:textSize="10sp" android:textColor="#6B7280" android:layout_marginEnd="8dp" />
+
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/circle_indicator" android:backgroundTint="#10B981" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" B (70–79%)" android:textSize="10sp" android:textColor="#6B7280" android:layout_marginEnd="8dp" />
+
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/circle_indicator" android:backgroundTint="#F59E0B" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" C (60–69%)" android:textSize="10sp" android:textColor="#6B7280" android:layout_marginEnd="8dp" />
+
+                <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/circle_indicator" android:backgroundTint="#EF4444" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" D/F (below 60%)" android:textSize="10sp" android:textColor="#6B7280" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subject results"
+                android:textColor="#111827"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Results List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAcademicResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_subject_result"
+                tools:itemCount="3" />
+
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/emptyStateView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone"
+                android:paddingVertical="48dp">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:alpha="0.5"
+                    android:src="@drawable/ic_results"
+                    app:tint="#9CA3AF" />
+
+                <TextView
+                    android:id="@+id/tvEmptyMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Results not yet released"
+                    android:textColor="#4B5563"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/loadingIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="48dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -66,9 +66,9 @@ class StudentDashboardActivity : AppCompatActivity(), NavigationView.OnNavigatio
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> true
-                R.id.nav_results -> { /* NavigationRoutes.navigateToResults(this); */ true }
+                R.id.nav_results -> { NavigationRoutes.navigateToResults(this); true }
                 R.id.nav_assignments -> { /* NavigationRoutes.navigateToAssignments(this); */ true }
-                R.id.nav_fees -> { /* NavigationRoutes.navigateToFees(this); */ true }
+                R.id.nav_fees -> { NavigationRoutes.navigateToFees(this); true }
                 else -> false
             }
         }
@@ -117,11 +117,11 @@ class StudentDashboardActivity : AppCompatActivity(), NavigationView.OnNavigatio
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> { /* Already here */ }
-            R.id.nav_results -> { /* Navigate to Results */ }
+            R.id.nav_results -> { NavigationRoutes.navigateToResults(this) }
             R.id.nav_assignments -> { /* Navigate to Assignments */ }
-            R.id.nav_attendance -> { /* Navigate to Attendance */ }
+            R.id.nav_attendance -> { NavigationRoutes.navigateToAttendance(this) }
             R.id.nav_timetable -> { NavigationRoutes.navigateToTimetable(this) }
-            R.id.nav_fees -> { /* Navigate to Fees */ }
+            R.id.nav_fees -> { NavigationRoutes.navigateToFees(this) }
             R.id.nav_messages -> { /* Navigate to Messages */ }
             R.id.nav_profile -> { /* Navigate to Profile */ }
             R.id.nav_logout -> logout()

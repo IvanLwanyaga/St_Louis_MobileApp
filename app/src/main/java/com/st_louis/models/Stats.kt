@@ -16,6 +16,9 @@ data class AdminStats(
     @SerializedName("fees_collected")
     val feesCollected: String,
 
+    @SerializedName("pending_tasks")
+    val pendingTasks: List<String> = emptyList(),
+
     @SerializedName("total_classes")
     val totalClasses: String? = null,
 
@@ -36,6 +39,12 @@ data class TeacherStats(
 
     @SerializedName("avg_score")
     val avgScore: String,
+
+    @SerializedName("attendance_summary")
+    val attendanceSummary: String, // e.g. "38/42"
+
+    @SerializedName("pending_tasks")
+    val pendingTasks: List<String> = emptyList(),
 
     @SerializedName("total_classes")
     val totalClasses: String? = null,

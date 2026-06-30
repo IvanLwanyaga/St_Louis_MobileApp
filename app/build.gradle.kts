@@ -2,16 +2,19 @@ import org.gradle.kotlin.dsl.implementation
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.st_louis"
-    compileSdk = 37
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.st_louis"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -66,4 +69,8 @@ dependencies {
 
     // SwipeRefreshLayout
     implementation(libs.androidx.swiperefreshlayout)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }

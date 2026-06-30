@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="#E5E7EB">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/ivSubjectIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_blue_light"
+            android:padding="10dp"
+            android:src="@drawable/ic_results"
+            app:tint="@color/primary_blue" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/tvSubjectName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#111827"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Mathematics" />
+
+            <TextView
+                android:id="@+id/tvSubjectMarks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#6B7280"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp"
+                tools:text="76 / 100 marks" />
+
+            <ProgressBar
+                android:id="@+id/pbSubjectScore"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:progress="76"
+                android:progressDrawable="@drawable/custom_progress_drawable" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvSubjectGrade"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bg_grade_badge"
+            android:gravity="center"
+            android:textColor="#059669"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="B" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

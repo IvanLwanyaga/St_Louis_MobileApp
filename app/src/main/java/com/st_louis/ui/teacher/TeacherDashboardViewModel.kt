@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.st_louis.data.ApiService
+import com.st_louis.models.TeacherStats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,39 +15,34 @@ class TeacherDashboardViewModel @Inject constructor(
     private val apiService: ApiService
 ) : ViewModel() {
 
-    private val _teacherName = MutableLiveData<String>().apply { value = "Mr. John Otieno" }
-    val teacherName: LiveData<String> = _teacherName
+    private val _stats = MutableLiveData<TeacherStats>()
+    val stats: LiveData<TeacherStats> = _stats
 
-    private val _subject = MutableLiveData<String>().apply { value = "Mathematics & Physics" }
-    val subject: LiveData<String> = _subject
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _classesToday = MutableLiveData<String>().apply { value = "4" }
-    val classesToday: LiveData<String> = _classesToday
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> = _error
 
-    private val _totalStudents = MutableLiveData<String>().apply { value = "155" }
-    val totalStudents: LiveData<String> = _totalStudents
-
-    private val _avgScore = MutableLiveData<String>().apply { value = "71%" }
-    val avgScore: LiveData<String> = _avgScore
-
-    init {
-        fetchData()
-    }
-
-    private fun fetchData() {
+    fun loadDashboardData(teacherId: String) {
+        _isLoading.value = true
         viewModelScope.launch {
             try {
-                val teacherId = "current_teacher_id"
                 val response = apiService.getTeacherStats(teacherId)
                 if (response.isSuccessful) {
-                    val stats = response.body()
-                    _classesToday.value = stats?.classesToday ?: "4"
-                    _totalStudents.value = stats?.totalStudents ?: "155"
-                    _avgScore.value = stats?.avgScore ?: "71%"
+                    _stats.value = response.body()
+                } else {
+                    _error.value = "Failed to fetch dashboard data"
                 }
             } catch (e: Exception) {
-                // Handle error
+                _error.value = e.localizedMessage
+            } finally {
+                _isLoading.value = false
             }
         }
+    }
+
+    fun logout() {
+        // Implement logout logic if needed
     }
 }

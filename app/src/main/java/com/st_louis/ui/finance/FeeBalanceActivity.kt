@@ -3,20 +3,21 @@ package com.st_louis.ui.finance
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.st_louis.R
 import com.st_louis.data.ApiClient
 import com.st_louis.databinding.ActivityFeeBalanceBinding
 import com.st_louis.models.FeeSummary
-import androidx.lifecycle.ViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FeeBalanceActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFeeBalanceBinding
-    private lateinit var viewModel: FeeBalanceViewModel
+    private val viewModel: FeeBalanceViewModel by viewModels()
     private lateinit var adapter: PaymentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +26,6 @@ class FeeBalanceActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar()
-        setupViewModel()
         setupRecyclerView()
         setupObservers()
         setupSwipeRefresh()
@@ -40,16 +40,6 @@ class FeeBalanceActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { 
             onBackPressedDispatcher.onBackPressed()
         }
-    }
-
-    private fun setupViewModel() {
-        val apiService = ApiClient.getApiService()
-        val factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return FeeBalanceViewModel(apiService) as T
-            }
-        }
-        viewModel = ViewModelProvider(this, factory)[FeeBalanceViewModel::class.java]
     }
 
     private fun setupRecyclerView() {
