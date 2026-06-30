@@ -98,6 +98,11 @@ interface ApiService {
     @GET("stats/parent/{id}")
     suspend fun getParentStats(@Path("id") id: String): Response<ParentStats>
 
+    // ==================== FEE ENDPOINTS ====================
+
+    @GET("student/{studentId}/fees/details")
+    suspend fun getFeeDetails(@Path("studentId") studentId: String): Response<FeeDetailsResponse>
+
     // ==================== SCHEDULE MANAGEMENT ENDPOINTS ====================
 
     @GET("admin/schedule")

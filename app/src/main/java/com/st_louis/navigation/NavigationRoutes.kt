@@ -78,6 +78,11 @@ object NavigationRoutes {
         context.startActivity(intent)
     }
 
+    fun navigateToFees(context: Context) {
+        val intent = Intent(context, com.st_louis.ui.finance.FeeBalanceActivity::class.java)
+        context.startActivity(intent)
+    }
+
     fun navigateToRegistration(context: Context, userType: String) {
         val intent = Intent(context, ManageUsersActivity::class.java)
         intent.putExtra("USER_TYPE", userType)

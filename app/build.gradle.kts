@@ -63,4 +63,7 @@ dependencies {
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
+
+    // SwipeRefreshLayout
+    implementation(libs.androidx.swiperefreshlayout)
 }
